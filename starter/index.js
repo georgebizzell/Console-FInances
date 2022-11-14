@@ -170,12 +170,10 @@ averagechange = formatter.format(averagechange);
 
 /* Greatest increase in profit & decrease in loss */
 
-var changes = [];
-
-var changeswithmonths = [];
-
-greatestprofit = 0;
-greatestloss = 0;
+greatest_profit_increase = 0;
+greatest_loss_decrease = 0;
+greatest_profit_date = 0;
+greatest_loss_date = 0;
 
 for (var i = 0; i < finances.length - 1; i++)
 {  
@@ -188,32 +186,36 @@ for (var i = 0; i < finances.length - 1; i++)
   var difference = nextmonth - thismonth;
   // console.log(change); -- test console log
 
-  if (difference > greatestprofit)
+  if (difference > greatest_profit_increase)
   {
-    greatestprofit = finances[i];
+    greatest_profit_date = finances[i][0];
+    greatest_profit_increase = difference;
   }
 
-  if (difference < greatestloss)
+  if (difference < greatest_loss_decrease)
   {
-    greatestloss = finances[i];
+    greatest_loss_date = finances[i][0];
+    greatest_loss_decrease = difference;
   }
-  
+
 }
 
-var greatestprofitdollars = formatter.format(greatestprofit[1]);
+var greatestprofitdollars = formatter.format(greatest_profit_increase);
 
-var greatestlossdollars = formatter.format(greatestloss[1]);
+var greatestlossdollars = formatter.format(greatest_loss_decrease);
 
 
-console.log("Financial Analysis\n");
+console.log("Financial Analysis");
 console.log("----------------------------\n")
 console.log("Total Months: " + totalmonths + "\n")
 console.log("Total: " + totalprofitloss + "\n")
 console.log("Average Change: " + averagechange + "\n")
-console.log("Greatest Increase in Profits: " + greatestprofit[0] + "  (" + greatestprofitdollars + ")\n")
-console.log("Greatest Decrease in Losses: " + greatestloss[0] + "  (" + greatestlossdollars + ")\n")
+console.log("Greatest Increase in Profits: " + greatest_profit_date + "  (" + greatestprofitdollars + ")\n")
+console.log("Greatest Decrease in Losses: " + greatest_loss_date + "  (" + greatestlossdollars + ")\n")
 
-/*  Instructed output 
+/*  
+
+Instructed output from original task definition
 
 Financial Analysis
 ----------------------------
