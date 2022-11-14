@@ -99,29 +99,31 @@ while (finances[i])
     i++;
 }
 
-console.log(months);
+// test console log -- console.log(months); -- removed for submission
 
-console.log(months.length);
+// test console log -- console.log(months.length); -- removed for submission
 
 // Callback function for returning unique list from array to check for duplicate months in list
+
+// From https://stackoverflow.com/questions/1960473/get-all-unique-values-in-a-javascript-array-remove-duplicates
 
 function onlyUnique(value, index, self) {
     return self.indexOf(value) === index;
   }
 
-// Implement function on list of months
+// Implement unique list function on list of months
 
 var uniqueMonths = months.filter(onlyUnique);
 
 // Output unique months
 
-console.log(uniqueMonths);
+// tetsing consol log -- console.log(uniqueMonths); -- now removed 
 
 // Output count of unique months
 
-console.log(uniqueMonths.length);
+var totalmonths = uniqueMonths.length;
 
-// Create list of 'Month-Year' values only
+// Total profit + loss calculation
 
 var profitloss = 0;
 
@@ -133,12 +135,90 @@ while (finances[i])
     i++;
 }
 
-console.log(profitloss);
+// testing console log -- console.log(profitloss); -- removed for submission
 
-// GBP Currency formatter
+// USD Currency formatter
+
 const formatter = new Intl.NumberFormat('en-US', {
     style: 'currency',
     currency: 'USD'
   });
   
-  console.log(formatter.format(profitloss));
+var totalprofitloss = formatter.format(profitloss);
+
+/* Average change */
+
+var totalchange = 0;
+
+for (var i = 0; i < finances.length - 1; i++)
+{
+  var thismonth = finances[i][1];
+  // console.log(thismonth); -- test console log
+
+  var nextmonth = finances[i+1][1];
+  // console.log(nextmonth); -- test console log
+
+  var change = nextmonth - thismonth;
+  // console.log(change); -- test console log
+
+  totalchange += change;
+}
+
+averagechange = totalchange / (i+1);
+
+averagechange = formatter.format(averagechange);
+
+/* Greatest increase in profit & decrease in loss */
+
+var changes = [];
+
+var changeswithmonths = [];
+
+greatestprofit = 0;
+greatestloss = 0;
+
+for (var i = 0; i < finances.length - 1; i++)
+{  
+  var thismonth = finances[i][1];
+  // console.log(thismonth); -- test console log
+
+  var nextmonth = finances[i+1][1];
+  // console.log(nextmonth); -- test console log
+
+  var difference = nextmonth - thismonth;
+  // console.log(change); -- test console log
+
+  if (difference > greatestprofit)
+  {
+    greatestprofit = finances[i];
+  }
+
+  if (difference < greatestloss)
+  {
+    greatestloss = finances[i];
+  }
+
+}
+
+greatestprofit = formatter.format(greatestprofit[1]);
+
+greatestloss = formatter.format(greatestloss[1]);
+
+
+console.log("Financial Analysis\n");
+console.log("----------------------------\n")
+console.log("Total Months: " + totalmonths + "\n")
+console.log("Total: " + totalprofitloss + "\n")
+console.log("Average Change: " + averagechange + "\n")
+console.log("Greatest Increase in Profits: " + greatestprofit + "\n")
+console.log("Greatest Decrease in Losses: " + greatestloss + "\n")
+
+/*  Instructed output 
+
+Financial Analysis
+----------------------------
+Total Months: 25
+Total: $2561231
+Average  Change: $-2315.12
+Greatest Increase in Profits: Feb-2012 ($1926159)
+Greatest Decrease in Profits: Sep-2013 ($-2196167) */
