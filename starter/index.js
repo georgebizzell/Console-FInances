@@ -197,12 +197,12 @@ for (var i = 0; i < finances.length - 1; i++)
   {
     greatestloss = finances[i];
   }
-
+  
 }
 
-greatestprofit = formatter.format(greatestprofit[1]);
+var greatestprofitdollars = formatter.format(greatestprofit[1]);
 
-greatestloss = formatter.format(greatestloss[1]);
+var greatestlossdollars = formatter.format(greatestloss[1]);
 
 
 console.log("Financial Analysis\n");
@@ -210,8 +210,8 @@ console.log("----------------------------\n")
 console.log("Total Months: " + totalmonths + "\n")
 console.log("Total: " + totalprofitloss + "\n")
 console.log("Average Change: " + averagechange + "\n")
-console.log("Greatest Increase in Profits: " + greatestprofit + "\n")
-console.log("Greatest Decrease in Losses: " + greatestloss + "\n")
+console.log("Greatest Increase in Profits: " + greatestprofit[0] + "  (" + greatestprofitdollars + ")\n")
+console.log("Greatest Decrease in Losses: " + greatestloss[0] + "  (" + greatestlossdollars + ")\n")
 
 /*  Instructed output 
 
