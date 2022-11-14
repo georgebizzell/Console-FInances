@@ -8,7 +8,7 @@ This project is a demonstration of using javascript to analyse financial data.
 
 GitHub Repo: https://github.com/georgebizzell/Console-Finances
 
-Live URL: 
+Live URL: https://georgebizzell.github.io/Console-Finances/
 
 ## User instructions
 
